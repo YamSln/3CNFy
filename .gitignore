@@ -1,0 +1,3 @@
+*.cnf
+/build
+.vscode/settings.json

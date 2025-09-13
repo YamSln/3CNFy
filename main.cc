@@ -123,19 +123,19 @@ int main(int argc, char* argv[]) {
        << std::setw(15) << output_path << endl;
   cout << std::left << std::setw(35)
        << "Original number of clauses:" << std::right << std::setw(15)
-       << encoder.get_original_nof_clauses() << endl;
+       << encoder.GetOriginalNofClauses() << endl;
   cout << std::left << std::setw(35)
        << "Average original clause size:" << std::right << std::setw(15)
-       << encoder.get_avg_original_clause_size() << endl;
+       << encoder.GetAvgOriginalClauseSize() << endl;
   cout << std::left << std::setw(35)
        << "Number of clauses generated:" << std::right << std::setw(15)
-       << encoder.get_clauses_generated() << endl;
+       << encoder.GetClausesGenerated() << endl;
   cout << std::left << std::setw(35)
        << "Auxiliary variables introduced:" << std::right << std::setw(15)
-       << encoder.get_aux_vars_used() << endl;
+       << encoder.GetAuxVarsUsed() << endl;
   cout << std::left << std::setw(35)
        << "Maximal auxiliary variable used:" << std::right << std::setw(15)
-       << max_var + encoder.get_aux_vars_used() << endl;
+       << max_var + encoder.GetAuxVarsUsed() << endl;
   cout << "-----------------------------------------------" << endl;
 
   return 0;

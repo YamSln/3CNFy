@@ -19,8 +19,8 @@ TEST(Encoder3Test, SingleLiteralClause) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 3}, {1, -2, 3}, {1, 2, -3}, {1, -2, -3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 4);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 2);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 4);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 2);
 }
 
 TEST(Encoder3Test, TwoLiteralClause) {
@@ -30,8 +30,8 @@ TEST(Encoder3Test, TwoLiteralClause) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{1, 2, 3}, {1, 2, -3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 2);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 1);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 2);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 1);
 }
 
 TEST(Encoder3Test, ThreeLiteralClause) {
@@ -41,8 +41,8 @@ TEST(Encoder3Test, ThreeLiteralClause) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{1, 2, 3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 1);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 1);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 0);
 }
 
 TEST(Encoder3Test, FourLiteralClause) {
@@ -52,8 +52,8 @@ TEST(Encoder3Test, FourLiteralClause) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{1, 2, 5}, {-5, 3, 4}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 2);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 1);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 2);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 1);
 }
 
 TEST(Encoder3Test, FiveLiteralClause) {
@@ -64,8 +64,8 @@ TEST(Encoder3Test, FiveLiteralClause) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 6}, {-6, 3, 7}, {-7, 4, 5}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 3);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 2);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 3);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 2);
 }
 
 TEST(Encoder3Test, SixLiteralClause) {
@@ -76,8 +76,8 @@ TEST(Encoder3Test, SixLiteralClause) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 7}, {-7, 3, 8}, {-8, 4, 9}, {-9, 5, 6}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 4);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 3);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 4);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 3);
 }
 
 TEST(Encoder3Test, SevenLiteralClause) {
@@ -88,8 +88,8 @@ TEST(Encoder3Test, SevenLiteralClause) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 8}, {-8, 3, 9}, {-9, 4, 10}, {-10, 5, 11}, {-11, 6, 7}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 5);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 4);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 5);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 4);
 }
 
 TEST(Encoder3Test, LargeClause) {
@@ -101,8 +101,8 @@ TEST(Encoder3Test, LargeClause) {
       {1, 2, 11},   {-11, 3, 12}, {-12, 4, 13}, {-13, 5, 14},
       {-14, 6, 15}, {-15, 7, 16}, {-16, 8, 17}, {-17, 9, 10}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 8);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 7);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 8);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 7);
 }
 
 TEST(Encoder3Test, AverageClauseSize) {
@@ -114,7 +114,7 @@ TEST(Encoder3Test, AverageClauseSize) {
   encoder.Encode(clause1, next_var);
   encoder.Encode(clause2, next_var + 3);
   encoder.Encode(clause3, next_var + 5);
-  EXPECT_DOUBLE_EQ(encoder.get_avg_original_clause_size(), 4.0);
+  EXPECT_DOUBLE_EQ(encoder.GetAvgOriginalClauseSize(), 4.0);
 }
 
 TEST(Encoder3Test, OriginalNumberOfClauses) {
@@ -126,7 +126,7 @@ TEST(Encoder3Test, OriginalNumberOfClauses) {
   encoder.Encode(clause1, next_var);
   encoder.Encode(clause2, next_var + 3);
   encoder.Encode(clause3, next_var + 5);
-  EXPECT_EQ(encoder.get_original_nof_clauses(), 3);
+  EXPECT_EQ(encoder.GetOriginalNofClauses(), 3);
 }
 
 TEST(Encoder3Test, EncodeMultipleClauses) {
@@ -138,10 +138,10 @@ TEST(Encoder3Test, EncodeMultipleClauses) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 3}, {1, 2, 6}, {-6, 3, 4}, {1, 2, 7}, {-7, 3, 8}, {-8, 4, 5}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 6);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 3);
-  EXPECT_EQ(encoder.get_original_nof_clauses(), 3);
-  EXPECT_DOUBLE_EQ(encoder.get_avg_original_clause_size(), 4.0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 6);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 3);
+  EXPECT_EQ(encoder.GetOriginalNofClauses(), 3);
+  EXPECT_DOUBLE_EQ(encoder.GetAvgOriginalClauseSize(), 4.0);
 }
 
 TEST(Encoder3Test, EncodeMultipleClausesWithTrailingZeros) {
@@ -153,10 +153,10 @@ TEST(Encoder3Test, EncodeMultipleClausesWithTrailingZeros) {
   std::vector<std::array<int, 3>> expected = {
       {1, 2, 3}, {1, 2, 6}, {-6, 3, 4}, {1, 2, 7}, {-7, 3, 8}, {-8, 4, 5}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 6);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 3);
-  EXPECT_EQ(encoder.get_original_nof_clauses(), 3);
-  EXPECT_DOUBLE_EQ(encoder.get_avg_original_clause_size(), 4.0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 6);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 3);
+  EXPECT_EQ(encoder.GetOriginalNofClauses(), 3);
+  EXPECT_DOUBLE_EQ(encoder.GetAvgOriginalClauseSize(), 4.0);
 }
 
 TEST(Encoder3Test, ClauseWithTrailingZero) {
@@ -166,8 +166,8 @@ TEST(Encoder3Test, ClauseWithTrailingZero) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{1, 2, 3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 1);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 1);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 0);
 }
 
 TEST(Encoder3Test, ClauseWithNegativeLiterals) {
@@ -177,8 +177,8 @@ TEST(Encoder3Test, ClauseWithNegativeLiterals) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{1, -2, 3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 1);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 1);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 0);
 }
 
 TEST(Encoder3Test, ClauseWithAllNegativeLiterals) {
@@ -188,8 +188,8 @@ TEST(Encoder3Test, ClauseWithAllNegativeLiterals) {
   auto result = encoder.Encode(clause, next_var);
   std::vector<std::array<int, 3>> expected = {{-1, -2, -3}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 1);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 0);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 1);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 0);
 }
 
 TEST(Encoder3Test, ClauseWithMixedLiterals) {
@@ -200,6 +200,6 @@ TEST(Encoder3Test, ClauseWithMixedLiterals) {
   std::vector<std::array<int, 3>> expected = {
       {1, -2, 6}, {-6, 3, 7}, {-7, -4, 5}};
   EXPECT_EQ(result, expected);
-  EXPECT_EQ(encoder.get_clauses_generated(), 3);
-  EXPECT_EQ(encoder.get_aux_vars_used(), 2);
+  EXPECT_EQ(encoder.GetClausesGenerated(), 3);
+  EXPECT_EQ(encoder.GetAuxVarsUsed(), 2);
 }

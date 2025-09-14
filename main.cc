@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
     bool neg = line[line_index] == '-';
     if (neg) line_index++;
     int num = 0;
-    while ('1' <= line[line_index] && line[line_index] <= '9') {
+    while ('0' <= line[line_index] && line[line_index] <= '9') {
       num = num * 10 + (long long)(line[line_index] - '0');
       line_index++;
     }
